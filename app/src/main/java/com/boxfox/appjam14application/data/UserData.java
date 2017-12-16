@@ -13,7 +13,7 @@ public class UserData extends RealmObject {
     private String accessToken;
     private String name;
     private String profileImageUrl;
-    private int graduation;
+    private int grade;
     private String school;
 
     public String getAccessToken() {
@@ -25,6 +25,42 @@ public class UserData extends RealmObject {
     }
 
     public static String getDefaultAccessToken() {
-        return Realm.getDefaultInstance().where(UserData.class).findFirst().getAccessToken();
+        return getDefault().getAccessToken();
+    }
+
+    public static UserData getDefault() {
+        return Realm.getDefaultInstance().where(UserData.class).findFirst();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
     }
 }
