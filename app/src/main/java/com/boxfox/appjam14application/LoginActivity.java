@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
@@ -21,6 +23,7 @@ import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
     LoginButton login_facebook;
+    LinearLayout login_facebook_fake;
     CallbackManager callbackManager;
 
     @Override
@@ -28,9 +31,20 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
+        login_facebook_fake = findViewById(R.id.login_facebook_fake);
 
         login_facebook = findViewById(R.id.login_facebook);
         callbackManager = CallbackManager.Factory.create();
+
+        login_facebook_fake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (view.getId() == R.id.login_facebook_fake) {
+                    login_facebook.performClick();
+                }
+            }
+        });
+
         login_facebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -44,8 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                             public void onCompleted(Exception e, String result) {
                                 if (result.equals("User Not Found")) {
                                     //가입창
-                                    Intent intent = new Intent(LoginActivity.this, Login2Activity.class);
-                                    startActivity(intent);
+
                                 } else {
                                     try {
                                         JSONObject jsonObject = new JSONObject(result);
