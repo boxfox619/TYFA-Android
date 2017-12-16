@@ -1,10 +1,14 @@
 <resources>
     <string name="app_name">Appjam14Application</string>
 
-    <string name="url_serverHost">http://soylatte.kr:6974/</string>
+    <string name="url_serverHost">http://soylatte.kr:1208/</string>
     <string name="url_requestJob"></string>
     <string name="url_requestPayment"></string>
     <string name="url_requestMyJob"></string>
+    <string name="url_register">auth/register/</string>
+    <string name="url_login">auth/facebook/token?token=</string>
+    <string name="url_jobList">call/list?token=</string>
+    <string name="url_menu">menu/list</string>
 
     <string name="pay_cardNumber">카드번호</string>
     <string name="pay_cardPassword">비밀번호</string>
@@ -13,8 +17,7 @@
     <string name="pay_birth">생년월일</string>
 
     <string name="guide_my_request">매점에서 구매 후 꼭 \n \'구매완료\'버튼을 눌러주세요</string>
-
-    <string name="facebook_app_id">161091381167528</string>
-    <string name="fb_login_protocol_scheme">fb161091381167528</string>
+    <string name="facebook_app_id">1956743464645875</string>
+    <string name="fb_login_protocol_scheme">fb1956743464645875</string>
 
 </resources>

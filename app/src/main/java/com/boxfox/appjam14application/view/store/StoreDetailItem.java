@@ -1,4 +1,4 @@
-package com.boxfox.appjam14application;
+package com.boxfox.appjam14application.view.store;
 
 
 public class StoreDetailItem {

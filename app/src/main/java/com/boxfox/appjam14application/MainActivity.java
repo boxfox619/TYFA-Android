@@ -1,6 +1,5 @@
 package com.boxfox.appjam14application;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,12 +15,13 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.boxfox.appjam14application.data.RequestData;
-import com.boxfox.appjam14application.data.RequestItem;
+import com.boxfox.appjam14application.data.UserData;
 import com.boxfox.appjam14application.view.card.CardViewPagerAdapter;
 import com.boxfox.appjam14application.view.card.RequestCardView;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 
 //모든 요청, 미리 결제된 요청, 현금 결제 요청, 대신 구매 요청
 public class MainActivity extends AppCompatActivity {
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         viewpager_requestList = findViewById(R.id.viewpager_requestList);
         viewpager_requestList.setAdapter(adapter);
         viewpager_requestList.setClipToPadding(false);
-        viewpager_requestList.setPageMargin(-(int)getResources().getDimension(R.dimen.cardview_viewpager_margin));
+        viewpager_requestList.setPageMargin(-(int) getResources().getDimension(R.dimen.cardview_viewpager_margin));
         main_deliveryreq_button = findViewById(R.id.main_deliveryreq_button);
         main_deliveryreq_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,23 +78,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadRequestItems() {
-
-        RequestData data = RequestData.getDummyData();
-        adapter.addItem(data);
-        adapter.addItem(data);
-        adapter.addItem(data);
-        adapter.addItem(data);
-        layout_requestList.addView(new RequestCardView(this, true, data));
-        layout_requestList.addView(new RequestCardView(this, true, data));
-        layout_requestList.addView(new RequestCardView(this, true, data));
-        layout_requestList.addView(new RequestCardView(this, true, data));
-        layout_requestList2.addView(new RequestCardView(this, true, data));
-        layout_requestList2.addView(new RequestCardView(this, true, data));
-        layout_requestList2.addView(new RequestCardView(this, true, data));
-        layout_requestList2.addView(new RequestCardView(this, true, data));
-        layout_requestList2.addView(new RequestCardView(this, true, data));
-        layout_requestList2.addView(new RequestCardView(this, true, data));
-        layout_requestList2.addView(new RequestCardView(this, true, data));
+        Ion.with(this)
+                .load(getString(R.string.url_serverHost) + getString(R.string.url_jobList) + UserData.getDefaultUser().getAccessToken())
+                .asJsonArray()
+                .setCallback(new FutureCallback<JsonArray>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonArray result) {
+                        for (int i = 0; i < result.size(); i++) {
+                            JsonObject object = result.get(i).getAsJsonObject();
+                            RequestData data = RequestData.fromJson(object);
+                            adapter.addItem(data);
+                            layout_requestList.addView(new RequestCardView(MainActivity.this, true, data));
+                        }
+                    }
+                });
     }
 
 

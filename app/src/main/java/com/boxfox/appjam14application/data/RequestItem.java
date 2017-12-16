@@ -1,5 +1,16 @@
 package com.boxfox.appjam14application.data;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by boxfox on 2017-12-16.
  */
@@ -27,5 +38,19 @@ public class RequestItem {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public static List<RequestItem> createFromJson(JsonObject menu) {
+        List<RequestItem> itemList = new ArrayList();
+        try {
+            JSONObject object = new JSONObject(menu.toString());
+            for (Iterator<String> it = object.keys(); it.hasNext(); ) {
+                String key = it.next();
+                itemList.add(new RequestItem(key, object.getInt(key)));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return itemList;
     }
 }

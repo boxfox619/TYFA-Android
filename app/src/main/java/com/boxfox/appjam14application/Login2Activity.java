@@ -22,7 +22,6 @@ public class Login2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivity(new Intent(this, MainActivity.class));
         setContentView(R.layout.activity_login2);
 
         login2_school_input = findViewById(R.id.login2_school_input);
@@ -36,6 +35,9 @@ public class Login2Activity extends AppCompatActivity {
                 } else {
                     Intent intent = new Intent(Login2Activity.this, Login3Activity.class);
                     intent.putExtra("school_input", school);
+                    intent.putExtra("name_input", getIntent().getStringExtra("name_input"));
+                    intent.putExtra("profileUrl", getIntent().getStringExtra("profileUrl"));
+                    intent.putExtra("token_input", getIntent().getStringExtra("token_input"));
                     startActivity(intent);
                 }
             }

@@ -244,7 +244,6 @@ public class RequestCardView extends LinearLayout {
         tv_subInfo.setText(requestData.getSubInfo());
         tv_price.setText(String.valueOf(requestData.getPrice() + "원"));
         tv_cost.setText(String.valueOf(requestData.getCost()));
-
         Glide.with(getContext())
                 .load(requestData.getProfileUrl())
                 .into(iv_profileImage);
