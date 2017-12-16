@@ -11,14 +11,14 @@
         android:roundIcon="@drawable/ic_launcher_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".Login2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login2Activity"></activity>
         <activity android:name=".MainActivity">
 
         </activity>
@@ -31,9 +31,11 @@
         <activity android:name=".PaymentActivity" />
         <activity android:name=".RequestActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".Login3Activity" />
+        <activity android:name=".Login3Activity">
+
+        </activity>
         <activity android:name=".StoreDetailActivity" />
-        <activity android:name=".MyRequestActivity" >
+        <activity android:name=".MyRequestActivity">
 
         </activity>
         <activity android:name=".CalculateActivity" />
