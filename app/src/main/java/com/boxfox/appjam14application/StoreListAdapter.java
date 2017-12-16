@@ -5,6 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.boxfox.appjam14application.view.store.StoreDetailItem;
+import com.boxfox.appjam14application.view.store.StoreDetailItemView;
+
 import java.util.ArrayList;
 
 /**

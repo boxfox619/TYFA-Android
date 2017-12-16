@@ -1,4 +1,4 @@
-package com.boxfox.appjam14application;
+package com.boxfox.appjam14application.view.store;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.boxfox.appjam14application.R;
 
 
 public class StoreDetailItemView extends LinearLayout {

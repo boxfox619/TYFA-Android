@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/android.iml" filepath="$PROJECT_DIR$/android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Appjam14Application.iml" filepath="$PROJECT_DIR$/Appjam14Application.iml" />
+      <module fileurl="file://C:\Users\boxfox\Desktop\Programming\Project\android\Appjam14Application\android.iml" filepath="C:\Users\boxfox\Desktop\Programming\Project\android\Appjam14Application\android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

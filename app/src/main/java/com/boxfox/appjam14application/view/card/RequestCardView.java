@@ -243,6 +243,7 @@ public class RequestCardView extends LinearLayout {
         tv_price.setText(String.valueOf(requestData.getPrice() + "원"));
         tv_cost.setText(String.valueOf(requestData.getCost()));
         new AQuery(getContext()).id(R.id.iv_profileImage).image(requestData.getProfileUrl());
+
         initCheckbox();
 
         List<RequestItem> requestItems = requestData.getItemList();

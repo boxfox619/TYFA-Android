@@ -1,5 +1,7 @@
 package com.boxfox.appjam14application.data;
 
+import com.google.gson.JsonObject;
+
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -10,9 +12,9 @@ import java.util.List;
  */
 
 public class RequestData {
-    private String name, subInfo, profileUrl, paymentType;
+    private String name, subInfo, profileUrl, paymentType, school, userToken, itemToken;
     private List<RequestItem> itemList;
-    private int price, cost;
+    private int price, cost, clazz;
 
     public String getName() {
         return name;
@@ -78,7 +80,7 @@ public class RequestData {
         data.setPaymentType("먼저결제");
         data.setCost(300);
         data.setPrice(3000);
-        data.setProfileUrl("");
+        data.setProfileUrl("https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/13892285_597933247053303_7922493801672574281_n.jpg?oh=de10d9f3bd8f068541ded5bf2e6a942f&oe=5A8CC89F");
 
         List<RequestItem> list = new ArrayList();
         list.add(new RequestItem("가가난", 1));
@@ -88,6 +90,52 @@ public class RequestData {
 
         data.setItemList(list);
         return data;
+    }
+
+    public static RequestData fromJson(JsonObject object) {
+        RequestData requestData = new RequestData();
+        requestData.setSchool(object.get("school").getAsString());
+        requestData.clazz = Integer.valueOf(object.get("class").getAsString());
+        requestData.setProfileUrl(object.get("profileUrl").getAsString());
+        requestData.price = Integer.valueOf(object.get("price").getAsString());
+        requestData.cost = Integer.valueOf(object.get("tip").getAsString());
+        requestData.setPaymentType(object.get("type").getAsString());
+        requestData.userToken = object.get("userToken").getAsString();
+        requestData.itemToken = object.get("callToken").getAsString();
+        requestData.setItemList(RequestItem.createFromJson(object.get("menu").getAsJsonObject()));
+        return requestData;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public int getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(int clazz) {
+        this.clazz = clazz;
+    }
+
+    public String getItemToken() {
+        return itemToken;
+    }
+
+    public void setItemToken(String itemToken) {
+        this.itemToken = itemToken;
+    }
+
+    public String getUserToken() {
+        return userToken;
+    }
+
+    public void setUserToken(String userToken) {
+        this.userToken = userToken;
     }
 
     //price - 주문 금액
