@@ -1,49 +1,63 @@
 package com.boxfox.appjam14application;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 
-import com.boxfox.appjam14application.data.RequestData;
-import com.boxfox.appjam14application.data.RequestItem;
-import com.boxfox.appjam14application.view.card.RequestCardView;
-
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Created by dsm2016 on 2017-12-16.
- */
-
+//모든 요청, 미리 결제된 요청, 현금 결제 요청, 대신 구매 요청
 public class MainActivity extends AppCompatActivity {
     private LinearLayout layout_cardlist;
+
+    Spinner main_spinner;
+    String[] category = {"모든 요청", "미리 결제된 요청", "현금 결제 요청", "대신 구매 요청"};
+    String selected_category = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        layout_cardlist = findViewById(R.id.layout_cardlist);
-        loadRequestList();
+        main_spinner = findViewById(R.id.main_spinner);
+        ArrayAdapter<String> dayAdapter = new ArrayAdapter<>(
+                getApplicationContext(), R.layout.main_spinner_item, category
+        );
+        dayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        main_spinner.setAdapter(dayAdapter);
+
+        main_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selected_category = (String) adapterView.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
-    private void loadRequestList() {
-        RequestData data = new RequestData();
-        data.setCost(10);
-        data.setName("기밍느");
-        data.setPaymentType("asdasd");
-        data.setProfileUrl("https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/13892285_597933247053303_7922493801672574281_n.jpg?oh=de10d9f3bd8f068541ded5bf2e6a942f&oe=5A8CC89F");
-        data.setSubInfo("3학년 1반");
-        data.setItemList(createItemList());
-        layout_cardlist.addView(new RequestCardView(this, false, data));
-    }
 
-    private List<RequestItem> createItemList() {
-        List<RequestItem> list = new ArrayList();
-        list.add(new RequestItem("12asfasv", 1));
-        list.add(new RequestItem("ㅁㄴ암ㄴㄴ홈ㄴ ", 4));
-        list.add(new RequestItem("ㅁㄴㅇㅁㄴ ", 6));
-        list.add(new RequestItem("ㅁㄴㅇㅁㄴ ", 6));
-        return list;
+    public void onBackPressed() {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setMessage("정말 종료하시겠습니까?");
+        alertBuilder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                finishAffinity();
+            }
+        });
+        alertBuilder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        alertBuilder.show();
     }
-
 }

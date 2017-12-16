@@ -3,44 +3,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:orientation="vertical"
-    tools:context="com.boxfox.appjam14application.Login2Activity">
+    android:paddingLeft="15dp">
 
-    <View
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/login2_school_input"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:hint="학교를 입력해주세요." />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
 
-    <EditText
-        android:id="@+id/login2_grade_input"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:hint="학년을 입력해주세요." />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="정보 추가"
+                android:textColor="#000000"
+                android:textSize="24dp" />
 
-    <EditText
-        android:id="@+id/login2_class_input"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:hint="반을 입력해주세요." />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:text="학교 정보를 입력해주세요"
+                android:textColor="#331e1801"
+                android:textSize="12dp" />
+        </LinearLayout>
 
-    <EditText
-        android:id="@+id/login2_num_input"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:hint="번호를 입력해주세요." />
+        <View
+            android:layout_width="36dp"
+            android:layout_height="4dp"
+            android:background="#ffce0a" />
+    </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:text="내가 다니는 학교는"
+        android:textColor="#331e1801"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/login2_school_input"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorWhite" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="#ffce0a" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/login2_login3_layout"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="200dp"
+        android:background="@color/colorWhite">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:layout_alignParentBottom="true"
+            android:background="#ffce0a" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:gravity="center_horizontal"
+            android:text="다음으로"
+            android:textColor="#1e1801"
+            android:textSize="28sp" />
+    </RelativeLayout>
 </LinearLayout>

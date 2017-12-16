@@ -16,10 +16,6 @@ import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
-/**
- * Created by dsm2016 on 2017-12-16.
- */
-
 public class LoginActivity extends AppCompatActivity {
     LoginButton login_facebook;
     CallbackManager callbackManager;
