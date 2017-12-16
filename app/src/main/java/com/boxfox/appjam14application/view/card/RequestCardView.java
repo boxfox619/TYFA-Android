@@ -18,6 +18,7 @@ import com.androidquery.AQuery;
 import com.boxfox.appjam14application.R;
 import com.boxfox.appjam14application.data.RequestData;
 import com.boxfox.appjam14application.data.RequestItem;
+import com.boxfox.appjam14application.view.dialog.ItemListDialog;
 
 import java.util.List;
 
@@ -249,7 +250,8 @@ public class RequestCardView extends LinearLayout {
             itemList.addView(new RequestItemView(getContext(), requestItems.get(i)));
         }
         if (requestItems.size() > 3) {
-            itemList.addView(new MoreItemView(getContext(), requestItems.size() - 3));
+            MoreItemView view = new MoreItemView(getContext(), requestItems);
+            itemList.addView(view);
         }
     }
 

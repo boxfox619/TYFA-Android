@@ -29,7 +29,7 @@ public class MyRequestActivity extends AppCompatActivity {
     }
 
     public void loadMyRequest() {
-        Ion.with(this)
+        /*Ion.with(this)
                 .load(getString(R.string.url_serverHost) + getString(R.string.url_requestMyJob))
                 .asJsonObject()
                 .setCallback(new FutureCallback<JsonObject>() {
@@ -39,7 +39,7 @@ public class MyRequestActivity extends AppCompatActivity {
                         //add
 
                     }
-                });
+                });*/
 
         RequestData data = RequestData.getDummyData();
         RequestCardView view = new RequestCardView(this, false, data);
