@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         data.setProfileUrl("https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/13892285_597933247053303_7922493801672574281_n.jpg?oh=de10d9f3bd8f068541ded5bf2e6a942f&oe=5A8CC89F");
         data.setSubInfo("3학년 1반");
         data.setItemList(createItemList());
-        layout_cardlist.addView(new RequestCardView(this, true, data));
+        layout_cardlist.addView(new RequestCardView(this, false, data));
     }
 
     private List<RequestItem> createItemList() {
