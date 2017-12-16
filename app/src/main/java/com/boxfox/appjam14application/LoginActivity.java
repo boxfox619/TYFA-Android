@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.boxfox.appjam14application.data.UserData;
@@ -37,6 +39,7 @@ import io.realm.Realm;
 
 public class LoginActivity extends AppCompatActivity {
     LoginButton login_facebook;
+    LinearLayout login_facebook_fake;
     CallbackManager callbackManager;
 
     @Override

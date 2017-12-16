@@ -13,6 +13,7 @@
         android:background="#ffffff">
 
         <ImageView
+            android:id="@+id/iv_first"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1" />
@@ -49,6 +50,7 @@
         android:background="#ffffff">
 
         <ImageView
+            android:id="@+id/iv_second"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"/>

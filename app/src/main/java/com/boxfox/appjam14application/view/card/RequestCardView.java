@@ -3,6 +3,7 @@ package com.boxfox.appjam14application.view.card;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.boxfox.appjam14application.R;
 import com.boxfox.appjam14application.data.RequestData;
 import com.boxfox.appjam14application.data.RequestItem;
 import com.boxfox.appjam14application.view.dialog.ItemListDialog;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class RequestCardView extends LinearLayout {
     private CheckedChangeListener checkedChangeListener;
 
     private TextView tv_name, tv_subInfo, tv_price, tv_paymentType, tv_cost;
-    private ImageView iv_checkBox;
+    private ImageView iv_checkBox, iv_profileImage;
     private LinearLayout itemList;
     private View priceInfo, layout_contentView, rootView, label_paymentType, btn_done;
     private boolean checked;
@@ -50,7 +52,7 @@ public class RequestCardView extends LinearLayout {
         String infService = Context.LAYOUT_INFLATER_SERVICE;
         LayoutInflater li = (LayoutInflater) getContext().getSystemService(infService);
         View view = li.inflate(R.layout.layout_card_request, this, false);
-
+        iv_profileImage = view.findViewById(R.id.iv_profileImage);
         tv_name = view.findViewById(R.id.tv_name);
         tv_subInfo = view.findViewById(R.id.tv_subInfo);
         tv_price = view.findViewById(R.id.tv_price);
@@ -242,7 +244,9 @@ public class RequestCardView extends LinearLayout {
         tv_subInfo.setText(requestData.getSubInfo());
         tv_price.setText(String.valueOf(requestData.getPrice() + "원"));
         tv_cost.setText(String.valueOf(requestData.getCost()));
-        new AQuery(getContext()).id(R.id.iv_profileImage).image(requestData.getProfileUrl());
+        Glide.with(getContext())
+                .load(requestData.getProfileUrl())
+                .into(iv_profileImage);
 
         initCheckbox();
 
