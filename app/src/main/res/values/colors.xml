@@ -6,6 +6,7 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
     <color name="colorBackground">#F0F0F0</color>
+    <color name="colorDefultColor">#661e1801</color>
 
 
     <color name="priceType_first">#909090</color>

@@ -37,8 +37,6 @@ public class ItemListDialog extends AlertDialog {
         layout_itemList = findViewById(R.id.layout_itemList);
         btn_confirm.setOnClickListener(e->{
             this.dismiss();
-            this.cancel();
-            this.hide();
         });
         initItems();
     }

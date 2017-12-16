@@ -31,7 +31,9 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".Login3Activity" />
         <activity android:name=".StoreDetailActivity" />
-        <activity android:name=".MyRequestActivity"></activity>
+        <activity android:name=".MyRequestActivity" />
+        <activity android:name=".CalculateActivity" />
+        <activity android:name=".ConfirmActivity"></activity>
     </application>
 
 </manifest>

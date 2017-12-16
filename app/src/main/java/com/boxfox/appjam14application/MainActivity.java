@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivity(new Intent(this, MyRequestActivity.class));
+        startActivity(new Intent(this, CalculateActivity.class));
         setContentView(R.layout.activity_main);
         adapter = new CardViewPagerAdapter(this);
         layout_requestList = findViewById(R.id.layout_requestList);
