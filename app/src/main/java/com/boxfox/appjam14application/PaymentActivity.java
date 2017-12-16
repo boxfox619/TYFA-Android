@@ -55,7 +55,7 @@ public class PaymentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Ion.with(getApplicationContext())
-                        .load(getString(R.string.url_serverHost))
+                        .load(getString(R.string.url_serverHost)+getString(R.string.url_payment))
                         .setBodyParameter("cardnum", cardnum1+cardnum2+cardnum3+cardnum4)
                         .setBodyParameter("enddate",enddate1+enddate2 )
                         .setBodyParameter("class_input", cardpw1+cardpw2)

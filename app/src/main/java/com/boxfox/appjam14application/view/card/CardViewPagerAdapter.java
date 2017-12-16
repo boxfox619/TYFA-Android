@@ -26,6 +26,11 @@ public class CardViewPagerAdapter extends PagerAdapter {
         this.dataList = new ArrayList<>();
     }
 
+    public void removeAllItem() {
+        dataList.removeAll(dataList);
+        this.notifyDataSetChanged();
+    }
+
     public void addItem(RequestData data) {
         dataList.add(data);
         this.notifyDataSetChanged();

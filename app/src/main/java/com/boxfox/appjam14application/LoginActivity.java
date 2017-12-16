@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_login);
+        login_facebook_fake = findViewById(R.id.login_facebook_fake);
         login_facebook = findViewById(R.id.login_facebook);
         callbackManager = CallbackManager.Factory.create();
         login_facebook.setReadPermissions("public_profile", "user_friends");
@@ -119,6 +120,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onError(FacebookException error) {
                 Log.e("DEBUG", error.toString());
             }
+        });
+        login_facebook_fake.setOnClickListener(e->{
+            login_facebook.performClick();
         });
     }
 

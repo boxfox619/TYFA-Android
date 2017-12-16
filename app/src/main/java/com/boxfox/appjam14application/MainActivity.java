@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.boxfox.appjam14application.data.RequestData;
 import com.boxfox.appjam14application.data.UserData;
@@ -23,12 +24,21 @@ import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 //모든 요청, 미리 결제된 요청, 현금 결제 요청, 대신 구매 요청
 public class MainActivity extends AppCompatActivity {
     private LinearLayout layout_requestList, layout_requestList2;
     private ViewPager viewpager_requestList;
 
     private CardViewPagerAdapter adapter;
+
+    private List<String> list;
 
     private Spinner main_spinner;
     private String[] category = {"모든 요청", "미리 결제된 요청", "현금 결제 요청", "대신 구매 요청"};
@@ -41,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, CalculateActivity.class));
         setContentView(R.layout.activity_main);
         adapter = new CardViewPagerAdapter(this);
+        list = new ArrayList<>();
         layout_requestList = findViewById(R.id.layout_requestList);
         layout_requestList2 = findViewById(R.id.layout_requestList2);
         viewpager_requestList = findViewById(R.id.viewpager_requestList);
@@ -48,11 +59,32 @@ public class MainActivity extends AppCompatActivity {
         viewpager_requestList.setClipToPadding(false);
         viewpager_requestList.setPageMargin(-(int) getResources().getDimension(R.dimen.cardview_viewpager_margin));
         main_deliveryreq_button = findViewById(R.id.main_deliveryreq_button);
+        findViewById(R.id.iv_folder).setOnClickListener(v->{
+            Intent intent = new Intent(this, MyRequestActivity.class);
+            startActivity(intent);
+        });
         main_deliveryreq_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, StoreDetailActivity.class);
-                startActivity(intent);
+                if (list.size() > 0) {
+                    for (String calltoken : list) {
+                        Ion.with(MainActivity.this)
+                                .load(getString(R.string.url_serverHost) + getString(R.string.url_shuttle))
+                                .setBodyParameter("callToken", calltoken)
+                                .setBodyParameter("token", UserData.getDefault().getAccessToken())
+                                .asString().setCallback(new FutureCallback<String>() {
+                            @Override
+                            public void onCompleted(Exception e, String result) {
+
+                            }
+                        });
+                        Toast.makeText(MainActivity.this, "수락하였습니다!", Toast.LENGTH_LONG).show();
+                        loadRequestItems();
+                    }
+                } else {
+                    Intent intent = new Intent(MainActivity.this, StoreDetailActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         main_spinner = findViewById(R.id.main_spinner);
@@ -80,15 +112,31 @@ public class MainActivity extends AppCompatActivity {
     private void loadRequestItems() {
         Ion.with(this)
                 .load(getString(R.string.url_serverHost) + getString(R.string.url_jobList) + UserData.getDefaultUser().getAccessToken())
-                .asJsonArray()
-                .setCallback(new FutureCallback<JsonArray>() {
+                .asString()
+                .setCallback(new FutureCallback<String>() {
                     @Override
-                    public void onCompleted(Exception e, JsonArray result) {
-                        for (int i = 0; i < result.size(); i++) {
-                            JsonObject object = result.get(i).getAsJsonObject();
-                            RequestData data = RequestData.fromJson(object);
-                            adapter.addItem(data);
-                            layout_requestList.addView(new RequestCardView(MainActivity.this, true, data));
+                    public void onCompleted(Exception e, String result) {
+                        if (result == null) return;
+                        try {
+                            JSONArray arr = new JSONArray(result);
+                            for (int i = 0; i < arr.length(); i++) {
+                                JSONObject object = (JSONObject) arr.get(i);
+                                RequestData data = RequestData.fromJson(object);
+                                adapter.removeAllItem();
+                                adapter.addItem(data);
+                                RequestCardView cardView = new RequestCardView(MainActivity.this, true, data);
+                                layout_requestList.addView(cardView);
+                                cardView.setCheckedChangeListener(checked -> {
+                                    if (checked) {
+                                        list.add(cardView.getToken());
+                                    } else {
+                                        list.remove(cardView.getToken());
+                                    }
+                                    changeMode();
+                                });
+                            }
+                        } catch (JSONException e1) {
+                            e1.printStackTrace();
                         }
                     }
                 });
@@ -109,5 +157,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         alertBuilder.show();
+    }
+
+    private void changeMode() {
+        if (list.size() > 0) {
+            main_deliveryreq_button.setText("배달 수락하기");
+        } else {
+            main_deliveryreq_button.setText("배달 요청하기");
+        }
     }
 }

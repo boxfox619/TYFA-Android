@@ -5,12 +5,13 @@
     android:paddingTop="10dp">
 
     <LinearLayout
+        android:id="@+id/view_first"
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:layout_marginRight="8dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:background="#ffffff">
+        android:background="@drawable/cardview_border2">
 
         <ImageView
             android:id="@+id/iv_first"
@@ -42,12 +43,13 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/view_second"
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:layout_marginLeft="8dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:background="#ffffff">
+        android:background="@drawable/cardview_border2">
 
         <ImageView
             android:id="@+id/iv_second"

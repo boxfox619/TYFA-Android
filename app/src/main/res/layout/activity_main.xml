@@ -27,11 +27,12 @@
                 android:layout_weight="1" />
 
             <ImageView
+                android:id="@+id/iv_folder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginRight="12dp"
                 android:layout_weight="1.5"
-                android:src="@drawable/ic_action_name" />
+                android:src="@mipmap/ic_folder" />
 
 
         </LinearLayout>

@@ -1,14 +1,16 @@
 <resources>
-    <string name="app_name">Appjam14Application</string>
+    <string name="app_name">YoungB</string>
 
     <string name="url_serverHost">http://soylatte.kr:1208/</string>
     <string name="url_requestJob"></string>
     <string name="url_requestPayment"></string>
-    <string name="url_requestMyJob"></string>
+    <string name="url_myJob">/call/shuttle/list?token=</string>
+    <string name="url_shuttle">call/shuttle/asccept/</string>
     <string name="url_register">auth/register/</string>
     <string name="url_login">auth/facebook/token?token=</string>
     <string name="url_jobList">call/list?token=</string>
     <string name="url_menu">menu/list</string>
+    <string name="url_payment">payment/</string>
 
     <string name="pay_cardNumber">카드번호</string>
     <string name="pay_cardPassword">비밀번호</string>

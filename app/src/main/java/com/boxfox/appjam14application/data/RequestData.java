@@ -2,6 +2,7 @@ package com.boxfox.appjam14application.data;
 
 import com.google.gson.JsonObject;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -92,17 +93,17 @@ public class RequestData {
         return data;
     }
 
-    public static RequestData fromJson(JsonObject object) {
+    public static RequestData fromJson(JSONObject object) throws JSONException {
         RequestData requestData = new RequestData();
-        requestData.setSchool(object.get("school").getAsString());
-        requestData.clazz = Integer.valueOf(object.get("class").getAsString());
-        requestData.setProfileUrl(object.get("profileUrl").getAsString());
-        requestData.price = Integer.valueOf(object.get("price").getAsString());
-        requestData.cost = Integer.valueOf(object.get("tip").getAsString());
-        requestData.setPaymentType(object.get("type").getAsString());
-        requestData.userToken = object.get("userToken").getAsString();
-        requestData.itemToken = object.get("callToken").getAsString();
-        requestData.setItemList(RequestItem.createFromJson(object.get("menu").getAsJsonObject()));
+        requestData.setSchool(object.getString("school"));
+        requestData.clazz = Integer.valueOf(object.getString("class"));
+        requestData.setProfileUrl(object.getString("profile_url"));
+        requestData.price = Integer.valueOf(object.getString("price"));
+        requestData.cost = Integer.valueOf(object.getString("tip"));
+        requestData.setPaymentType(object.getString("type"));
+        requestData.userToken = object.getString("userToken");
+        requestData.itemToken = object.getString("callToken");
+        requestData.setItemList(RequestItem.createFromJson(object.getJSONObject("menu")));
         return requestData;
     }
 

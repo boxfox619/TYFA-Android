@@ -277,6 +277,10 @@ public class RequestCardView extends LinearLayout {
         rootView.setPadding(rootView.getPaddingLeft(), rootView.getPaddingTop(), rootView.getPaddingRight(), (int) getResources().getDimension(R.dimen.cardview_myRequestMode_padding_bottom));
     }
 
+    public String getToken(){
+        return requestData.getItemToken();
+    }
+
     public interface CheckedChangeListener {
         void onChange(boolean checked);
     }

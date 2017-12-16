@@ -23,6 +23,7 @@ public class PurchasePleaseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(PurchasePleaseActivity.this, ConfirmActivity.class);
                 startActivity(intent);
+                finish();
 
             }
         });

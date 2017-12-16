@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.boxfox.appjam14application.data.RequestItem;
 import com.boxfox.appjam14application.view.card.RequestItemView;
 
+import io.realm.Realm;
+
 public class CalculateActivity extends AppCompatActivity {
     private LinearLayout btn_payRight, btn_payMoney, btn_payPlease;
     private LinearLayout selectedView, layout_itemList;
@@ -97,9 +99,20 @@ public class CalculateActivity extends AppCompatActivity {
         String location = et_location.getText().toString();
         String content = et_content.getText().toString();
         String priceType = this.selectedPriceType;
-        if(priceType.equals("요청하기")){
-            Intent intent = new Intent(CalculateActivity.this, PurchasePleaseActivity.class);
-            startActivity(intent);
+
+        switch (selectedPriceType){
+            case "바로 결제":
+                Intent intent = new Intent(CalculateActivity.this, PaymentActivity.class);
+                startActivity(intent);
+                break;
+            case "현금 결제":
+                Intent intent3 = new Intent(CalculateActivity.this, PurchasePleaseActivity.class);
+                startActivity(intent3);
+                break;
+            case "대신 구매":
+                Intent intent2 = new Intent(CalculateActivity.this, PurchasePleaseActivity.class);
+                startActivity(intent2);
+                break;
         }
 
 

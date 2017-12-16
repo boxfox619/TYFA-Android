@@ -10,11 +10,14 @@ import android.widget.TextView;
 import com.boxfox.appjam14application.R;
 import com.bumptech.glide.Glide;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by boxfox on 2017-12-17.
  */
 
 public class StoreCardItemView extends LinearLayout {
+
     public StoreCardItemView(Context context, String name, String price, String url, String name2, String price2, String url2) {
         super(context);
         initView();
@@ -33,8 +36,8 @@ public class StoreCardItemView extends LinearLayout {
         ((TextView) findViewById(R.id.tv_title1)).setText(name);
         ((TextView) findViewById(R.id.tv_price1)).setText(price);
         Glide.with(getContext())
-                .load(url)
-                .into((ImageView)findViewById(R.id.iv_first));
+                .load(getContext().getString(R.string.url_serverHost) + url)
+                .into((ImageView) findViewById(R.id.iv_first));
         //image load
     }
 
@@ -42,8 +45,24 @@ public class StoreCardItemView extends LinearLayout {
         ((TextView) findViewById(R.id.tv_title2)).setText(name);
         ((TextView) findViewById(R.id.tv_price2)).setText(price);
         Glide.with(getContext())
-                .load(url)
-                .into((ImageView)findViewById(R.id.iv_second));
+                .load(getContext().getString(R.string.url_serverHost) + url)
+                .into((ImageView) findViewById(R.id.iv_second));
 
+    }
+
+    public void setFirstOnClick(OnItemSelected click) {
+        (findViewById(R.id.view_first)).setOnClickListener(view ->{
+            click.selected(((TextView)findViewById(R.id.tv_title1)).getText().toString(), Integer.valueOf(((TextView)findViewById(R.id.tv_price1)).getText().toString().substring(0, ((TextView)findViewById(R.id.tv_price1)).getText().toString().length()-1)));
+        });
+    }
+
+    public void setSecondOnClick(OnItemSelected click) {
+        (findViewById(R.id.view_second)).setOnClickListener(view ->{
+            click.selected(((TextView)findViewById(R.id.tv_title1)).getText().toString(), Integer.valueOf(((TextView)findViewById(R.id.tv_price2)).getText().toString().substring(0, ((TextView)findViewById(R.id.tv_price2)).getText().toString().length()-1)));
+        });
+    }
+
+    public interface OnItemSelected {
+        public void selected(String name, int price);
     }
 }

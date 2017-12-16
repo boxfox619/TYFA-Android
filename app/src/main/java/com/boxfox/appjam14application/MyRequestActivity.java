@@ -7,10 +7,15 @@ import android.widget.LinearLayout;
 
 import com.boxfox.appjam14application.data.RequestData;
 import com.boxfox.appjam14application.data.RequestItem;
+import com.boxfox.appjam14application.data.UserData;
 import com.boxfox.appjam14application.view.card.RequestCardView;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,34 +34,27 @@ public class MyRequestActivity extends AppCompatActivity {
     }
 
     public void loadMyRequest() {
-        /*Ion.with(this)
-                .load(getString(R.string.url_serverHost) + getString(R.string.url_requestMyJob))
-                .asJsonObject()
-                .setCallback(new FutureCallback<JsonObject>() {
+        Ion.with(this)
+                .load(getString(R.string.url_serverHost) + getString(R.string.url_myJob)+ UserData.getDefaultUser().getAccessToken())
+                .asString()
+                .setCallback(new FutureCallback<String>() {
                     @Override
-                    public void onCompleted(Exception e, JsonObject result) {
-
-                        //add
-
+                    public void onCompleted(Exception e, String result) {
+                        if (result == null) return;
+                        try {
+                            JSONArray arr = new JSONArray(result);
+                            for (int i = 0; i < arr.length(); i++) {
+                                JSONObject object = (JSONObject) arr.get(i);
+                                RequestData data = RequestData.fromJson(object);
+                                RequestCardView view = new RequestCardView(MyRequestActivity.this, false, data);
+                                view.setMyRequestMode();
+                                layout_cardList.addView(view);
+                            }
+                        } catch (JSONException e1) {
+                            e1.printStackTrace();
+                        }
                     }
-                });*/
-
-        RequestData data = RequestData.getDummyData();
-        RequestCardView view = new RequestCardView(this, false, data);
-        view.setMyRequestMode();
-        layout_cardList.addView(view);
-        RequestCardView view2 = new RequestCardView(this, false, data);
-        view2.setMyRequestMode();
-        layout_cardList.addView(view2);
-    }
-
-    private List<RequestItem> createItemList() {
-        List<RequestItem> list = new ArrayList();
-        list.add(new RequestItem("가가난", 1));
-        list.add(new RequestItem("가가22난", 10));
-        list.add(new RequestItem("가가난", 23));
-        list.add(new RequestItem("가ㅁㄴㅇㅁㄴㅇ", 31));
-        return list;
+                });
     }
 
 }

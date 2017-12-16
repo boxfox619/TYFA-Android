@@ -40,11 +40,11 @@ public class RequestItem {
         this.amount = amount;
     }
 
-    public static List<RequestItem> createFromJson(JsonObject menu) {
+    public static List<RequestItem> createFromJson(JSONObject menu) {
         List<RequestItem> itemList = new ArrayList();
         try {
             JSONObject object = new JSONObject(menu.toString());
-            for (Iterator<String> it = object.keys(); it.hasNext(); ) {
+            for (Iterator<String> it = menu.keys(); it.hasNext(); ) {
                 String key = it.next();
                 itemList.add(new RequestItem(key, object.getInt(key)));
             }
