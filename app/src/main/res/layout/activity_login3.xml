@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    android:paddingLeft="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="정보 추가"
+                android:textColor="#000000"
+                android:textSize="24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:text="학교 정보를 입력해주세요"
+                android:textColor="#331e1801"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="36dp"
+            android:layout_height="4dp"
+            android:background="#ffce0a" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/login3_grade_input"
+                android:gravity="bottom"
+                android:layout_width="32dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/colorWhite"
+                android:textSize="32dp" />
+
+            <TextView
+                android:layout_width="32dp"
+                android:layout_height="50dp"
+                android:text="학"
+                android:textSize="32dp" />
+
+            <TextView
+                android:layout_width="32dp"
+                android:layout_height="50dp"
+                android:text="년"
+                android:textSize="32dp" />
+
+
+            <EditText
+                android:id="@+id/login3_class_input"
+                android:gravity="bottom"
+                android:layout_width="32dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/colorWhite"
+                android:textSize="32dp" />
+
+            <TextView
+                android:layout_width="32dp"
+                android:layout_height="50dp"
+                android:text="반"
+                android:textSize="32dp" />
+
+            <EditText
+                android:id="@+id/login3_num_input"
+                android:gravity="bottom"
+                android:layout_width="32dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/colorWhite"
+                android:textSize="32dp" />
+
+            <TextView
+                android:layout_width="32dp"
+                android:layout_height="50dp"
+                android:text="번"
+                android:textSize="32dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="32dp"
+                android:layout_height="4dp"
+                android:background="#ffce0a" />
+
+            <View
+                android:layout_width="32dp"
+                android:layout_height="4dp"
+                android:background="@color/colorWhite" />
+
+            <View
+                android:layout_width="32dp"
+                android:layout_height="4dp"
+                android:background="@color/colorWhite" />
+
+            <View
+                android:layout_width="32dp"
+                android:layout_height="4dp"
+                android:background="#ffce0a" />
+
+            <View
+                android:layout_width="32dp"
+                android:layout_height="4dp"
+                android:background="@color/colorWhite" />
+
+            <View
+                android:layout_width="32dp"
+                android:layout_height="4dp"
+                android:background="#ffce0a" />
+
+            <View
+                android:layout_width="32dp"
+                android:layout_height="4dp"
+                android:background="@color/colorWhite" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/login3_main_layout"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="220dp"
+        android:background="@color/colorWhite">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:layout_alignParentBottom="true"
+            android:background="#ffce0a" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:gravity="center_horizontal"
+            android:text="완료하기"
+            android:textColor="#1e1801"
+            android:textSize="28sp" />
+    </RelativeLayout>
+</LinearLayout>
