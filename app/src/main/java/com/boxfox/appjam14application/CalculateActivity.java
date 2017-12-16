@@ -15,6 +15,8 @@ public class CalculateActivity extends AppCompatActivity {
     private LinearLayout selectedView, layout_itemList;
     private String selectedPriceType;
 
+    private TextView tv_guide, tv_submit;
+
     private EditText et_time, et_location, et_content;
     private View btn_modify_location, btn_modify_time, btn_submit;
 
@@ -26,6 +28,8 @@ public class CalculateActivity extends AppCompatActivity {
         btn_payMoney = findViewById(R.id.btn_payMoney);
         btn_payPlease = findViewById(R.id.btn_payPlease);
         layout_itemList = findViewById(R.id.layout_itemList);
+        tv_guide = findViewById(R.id.tv_guide);
+        tv_submit = findViewById(R.id.tv_submit);
 
         et_time = findViewById(R.id.et_time);
         et_content = findViewById(R.id.et_content);
@@ -65,6 +69,21 @@ public class CalculateActivity extends AppCompatActivity {
         selectedView.getChildAt(0).setBackground(getResources().getDrawable(R.drawable.circle_deactive));
         ((TextView) selectedView.getChildAt(1)).setTextColor(getResources().getColor(R.color.colorDefultColor));
         this.selectedView = (LinearLayout) view;
+
+        switch (selectedPriceType){
+            case "바로 결제":
+                tv_guide.setText("");
+                tv_submit.setText("결제하기");
+                break;
+            case "현금 결제":
+                tv_guide.setText("현금은 수령시 배달 학생에게 지급해주세요!");
+                tv_submit.setText("요청하기");
+                break;
+            case "대신 구매":
+                tv_guide.setText("일정기간 후 꼭 대금을 지급해야합니다!");
+                tv_submit.setText("요청하기");
+                break;
+        }
     }
 
     private void loadItems() {
