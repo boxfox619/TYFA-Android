@@ -1,10 +1,12 @@
 package com.boxfox.appjam14application;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -28,6 +30,11 @@ public class Login3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login3);
         String school_input = getIntent().getStringExtra("school_input");
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(login3_grade_input, InputMethodManager.SHOW_IMPLICIT);
+        imm.showSoftInput(login3_class_input, InputMethodManager.SHOW_IMPLICIT);
+        imm.showSoftInput(login3_num_input, InputMethodManager.SHOW_IMPLICIT);
+
         login3_main_layout = findViewById(R.id.login3_main_layout);
         login3_main_layout.setOnClickListener(new View.OnClickListener() {
             @Override

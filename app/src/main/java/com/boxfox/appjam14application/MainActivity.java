@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.boxfox.appjam14application.data.RequestData;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Spinner main_spinner;
     private String[] category = {"모든 요청", "미리 결제된 요청", "현금 결제 요청", "대신 구매 요청"};
     private String selected_category = "";
+    private Button main_deliveryreq_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
         viewpager_requestList.setAdapter(adapter);
         viewpager_requestList.setClipToPadding(false);
         viewpager_requestList.setPageMargin(-(int)getResources().getDimension(R.dimen.cardview_viewpager_margin));
+        main_deliveryreq_button = findViewById(R.id.main_deliveryreq_button);
+        main_deliveryreq_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, StoreDetailActivity.class);
+                startActivity(intent);
+            }
+        });
         main_spinner = findViewById(R.id.main_spinner);
         ArrayAdapter<String> dayAdapter = new ArrayAdapter<>(
                 getApplicationContext(), R.layout.main_spinner_item, category
@@ -54,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 selected_category = (String) adapterView.getSelectedItem().toString();
+                Log.d("DEBUG", selected_category);
             }
 
             @Override
