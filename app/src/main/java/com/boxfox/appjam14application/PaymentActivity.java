@@ -6,8 +6,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.boxfox.appjam14application.data.UserData;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+
+import io.realm.Realm;
+
+import static com.boxfox.appjam14application.data.UserData.getDefaultAccessToken;
 
 public class PaymentActivity extends AppCompatActivity {
     //결재할때 카드 번호 , 카드 비밀번호 , 카드 만료기간 , 카드 사용자 생년월일
@@ -51,6 +56,7 @@ public class PaymentActivity extends AppCompatActivity {
     public void requestPayment() {
         Ion.with(this)
                 .load(getString(R.string.url_serverHost) + getString(R.string.url_requestPayment))
+                .setBodyParameter("token", getDefaultAccessToken())
                 .setBodyParameter("user", "")
                 .setBodyParameter("number", getCardNumber())
                 .setBodyParameter("password", getCardPassword())
