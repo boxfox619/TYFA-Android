@@ -22,6 +22,7 @@ public class Login2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        startActivity(new Intent(this, MainActivity.class));
         setContentView(R.layout.activity_login2);
 
         login2_school_input = findViewById(R.id.login2_school_input);

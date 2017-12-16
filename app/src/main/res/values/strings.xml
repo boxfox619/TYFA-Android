@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Appjam14Application</string>
 
-    <string name="url_serverHost">http://soylatte.kr:6974</string>
+    <string name="url_serverHost">/</string>
     <string name="url_requestJob"></string>
     <string name="url_requestPayment"></string>
 

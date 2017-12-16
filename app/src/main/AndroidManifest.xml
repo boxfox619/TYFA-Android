@@ -34,7 +34,10 @@
         <activity android:name=".RequestActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".Login3Activity" />
-        <activity android:name=".StoreDetailActivity"></activity>
+        <activity android:name=".StoreDetailActivity" />
+        <activity android:name=".MyRequestActivity" />
+        <activity android:name=".CalculateActivity" />
+        <activity android:name=".ConfirmActivity"></activity>
     </application>
 
 </manifest>

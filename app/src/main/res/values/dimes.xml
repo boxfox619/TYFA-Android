@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cardview_hr_top_margin">14dp</dimen>
+    <dimen name="cardview_hr_bottom_margin">10dp</dimen>
+    <dimen name="cardview_open_height">158dp</dimen>
+    <dimen name="cardview_close_height">72dp</dimen>
+    <dimen name="cardview_priceInfo_size">40dp</dimen>
+    <dimen name="cardview_padding">15dp</dimen>
+    <dimen name="cardview_open_padding">10dp</dimen>
+    <dimen name="cardview_close_padding">15dp</dimen>
+    <dimen name="cardview_viewpager_margin">23dp</dimen>
+    <dimen name="cardview_myRequestMode_padding_bottom">14dp</dimen>
+</resources>
