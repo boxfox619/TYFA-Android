@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Appjam14Application</string>
+
+    <string name="pay_cardNumber">카드번호</string>
+    <string name="pay_cardPassword">비밀번호</string>
+    <string name="pay_cardDurationMonth">월</string>
+    <string name="pay_cardDurationYear">년</string>
+    <string name="pay_birth">생년월일</string>
 </resources>
