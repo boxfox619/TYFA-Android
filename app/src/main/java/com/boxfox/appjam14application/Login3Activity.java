@@ -47,10 +47,10 @@ public class Login3Activity extends AppCompatActivity {
                 }else{
                     Ion.with(getApplicationContext())
                             .load(getString(R.string.url_serverHost))
-                            .setBodyParameter("school_input", school_input)
-                            .setBodyParameter("grade_input", grade_input)
-                            .setBodyParameter("class_input", class_input)
-                            .setBodyParameter("num_input", num_input)
+                            .setBodyParameter("school", school_input)
+                            .setBodyParameter("grade", grade_input)
+                            .setBodyParameter("class", class_input)
+                            .setBodyParameter("numver", num_input)
                             .asString()
                             .setCallback(new FutureCallback<String>() {
                                 @Override

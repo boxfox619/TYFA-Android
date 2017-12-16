@@ -55,7 +55,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/login3_grade_input"
+            android:id="@+id/login2_school_input"
             android:layout_width="32dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/colorWhite"

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="잠깐만요!"
+                android:textColor="#000000"
+                android:textSize="24dp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="36dp"
+            android:layout_height="4dp"
+            android:background="#ffce0a" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:lineSpacingExtra="13sp"
+        android:text="‘대신 구매’는 구매 학생이 돈이 부족할때,
+배달 학생이 먼저 결제 후 나중에 대금을
+지급하는 방식입니다!
+
+대금 지급일을 지키지 않을 시,
+법적 처벌을 받을 수도 있으니
+유의사항을 숙지하시기 바랍니다"
+        android:textColor="#b31e1801"
+        android:textSize="18sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="66dp"
+            android:gravity="end"
+            android:text="우측 버튼을 누를 시 유의사항을
+숙지했다고 간주합니다"
+            android:textColor="#4c1e1801"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:id="@+id/purchaseplease_layout1"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:background="@color/colorWhite">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:layout_alignParentBottom="true"
+                android:background="#ffce0a" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:gravity="center_horizontal"
+                android:text="다음으로"
+                android:textColor="#1e1801"
+                android:textSize="28sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

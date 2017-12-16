@@ -65,7 +65,7 @@ public class PaymentActivity extends AppCompatActivity {
                             @Override
                             public void onCompleted(Exception e, String result) {
                                 if (result != null) {
-                                    Intent intent = new Intent(PaymentActivity.this, MainActivity.class);
+                                    Intent intent = new Intent(PaymentActivity.this, ConfirmActivity.class);
                                     startActivity(intent);
                                     finish();
                                 } else {

@@ -16,6 +16,9 @@ import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class LoginActivity extends AppCompatActivity {
     LoginButton login_facebook;
     CallbackManager callbackManager;
@@ -39,10 +42,23 @@ public class LoginActivity extends AppCompatActivity {
                         .setCallback(new FutureCallback<String>() {
                             @Override
                             public void onCompleted(Exception e, String result) {
-                                if (result != null) {
+                                if (result.equals("User Not Found")) {
+                                    //가입창
                                     Intent intent = new Intent(LoginActivity.this, Login2Activity.class);
                                     startActivity(intent);
                                 } else {
+                                    try {
+                                        JSONObject jsonObject = new JSONObject(result);
+                                        jsonObject.get("name");
+                                        jsonObject.get("token");
+                                        jsonObject.get("school");
+                                        jsonObject.get("class");
+                                        jsonObject.get("number");
+                                        jsonObject.get("profileurl");
+                                    } catch (JSONException e1) {
+                                        e1.printStackTrace();
+                                    }
+
                                     Log.d("DEBUG", e.toString());
                                 }
 

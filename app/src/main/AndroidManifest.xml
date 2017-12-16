@@ -12,17 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity">
-
-        </activity>
-        <activity android:name=".Login2Activity">
-
-        </activity>
-        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Login2Activity"></activity>
+        <activity android:name=".MainActivity">
+
         </activity>
 
         <meta-data
@@ -37,7 +35,8 @@
         <activity android:name=".StoreDetailActivity" />
         <activity android:name=".MyRequestActivity" />
         <activity android:name=".CalculateActivity" />
-        <activity android:name=".ConfirmActivity"></activity>
+        <activity android:name=".ConfirmActivity" />
+        <activity android:name=".PurchasePleaseActivity"></activity>
     </application>
 
 </manifest>

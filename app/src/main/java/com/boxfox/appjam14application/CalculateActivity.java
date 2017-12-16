@@ -1,5 +1,6 @@
 package com.boxfox.appjam14application;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -78,6 +79,7 @@ public class CalculateActivity extends AppCompatActivity {
             case "현금 결제":
                 tv_guide.setText("현금은 수령시 배달 학생에게 지급해주세요!");
                 tv_submit.setText("요청하기");
+
                 break;
             case "대신 구매":
                 tv_guide.setText("일정기간 후 꼭 대금을 지급해야합니다!");
@@ -95,6 +97,10 @@ public class CalculateActivity extends AppCompatActivity {
         String location = et_location.getText().toString();
         String content = et_content.getText().toString();
         String priceType = this.selectedPriceType;
+        if(priceType.equals("요청하기")){
+            Intent intent = new Intent(CalculateActivity.this, PurchasePleaseActivity.class);
+            startActivity(intent);
+        }
 
 
     }
