@@ -10,4 +10,8 @@
     <string name="pay_cardDurationMonth">월</string>
     <string name="pay_cardDurationYear">년</string>
     <string name="pay_birth">생년월일</string>
+
+    <string name="facebook_app_id">161091381167528</string>
+    <string name="fb_login_protocol_scheme">fb161091381167528</string>
+
 </resources>
