@@ -4,10 +4,10 @@
 
     <!-- 테두리 내부 색상 설정 -->
     <stroke
-        android:width="2dp"
+        android:width="1dp"
         android:color="@color/colorBlack" />
     <solid android:color="@color/colorWhite" />
-    <corners android:radius="5dp" />
+    <corners android:radius="1dp" />
     <!-- 테두리 내부 여백 설정 -->
     <!--<padding-->
     <!--android:bottom="8dp"-->

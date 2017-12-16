@@ -30,10 +30,9 @@ public class Login3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login3);
         String school_input = getIntent().getStringExtra("school_input");
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(login3_grade_input, InputMethodManager.SHOW_IMPLICIT);
-        imm.showSoftInput(login3_class_input, InputMethodManager.SHOW_IMPLICIT);
-        imm.showSoftInput(login3_num_input, InputMethodManager.SHOW_IMPLICIT);
+        login3_grade_input = findViewById(R.id.login3_grade_input);
+        login3_class_input = findViewById(R.id.login3_class_input);
+        login3_num_input = findViewById(R.id.login3_num_input);
 
         login3_main_layout = findViewById(R.id.login3_main_layout);
         login3_main_layout.setOnClickListener(new View.OnClickListener() {

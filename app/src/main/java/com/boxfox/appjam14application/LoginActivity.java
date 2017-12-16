@@ -31,11 +31,10 @@ public class LoginActivity extends AppCompatActivity {
         login_facebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d("DEBUG","success");
+                Log.d("DEBUG", "success" + loginResult.getAccessToken().getToken());
 
                 Ion.with(getApplicationContext())
-                        .load(getString(R.string.url_serverHost))
-                        .setBodyParameter("facebook_token", loginResult.getAccessToken().getUserId())
+                        .load("http://soylatte.kr:1208/auth/facebook/" + loginResult.getAccessToken().getToken())
                         .asString()
                         .setCallback(new FutureCallback<String>() {
                             @Override
@@ -49,11 +48,6 @@ public class LoginActivity extends AppCompatActivity {
 
                             }
                         });
-
-
-                finish();
-
-
             }
 
             @Override
