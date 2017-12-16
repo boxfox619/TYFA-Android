@@ -3,6 +3,7 @@ package com.boxfox.appjam14application.view.card;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,25 +50,25 @@ public class RequestCardView extends LinearLayout {
         String infService = Context.LAYOUT_INFLATER_SERVICE;
         LayoutInflater li = (LayoutInflater) getContext().getSystemService(infService);
         View view = li.inflate(R.layout.layout_card_request, this, false);
-        addView(view);
 
-        tv_name = findViewById(R.id.tv_name);
-        tv_subInfo = findViewById(R.id.tv_subInfo);
-        tv_price = findViewById(R.id.tv_price);
-        tv_paymentType = findViewById(R.id.tv_paymentType);
-        tv_cost = findViewById(R.id.tv_cost);
-        priceInfo = findViewById(R.id.layout_priceInfo);
-        itemList = findViewById(R.id.layout_itemList);
-        layout_contentView = findViewById(R.id.layout_contentView);
-        iv_checkBox = findViewById(R.id.iv_checkBox);
-        rootView = findViewById(R.id.rootView);
+        tv_name = view.findViewById(R.id.tv_name);
+        tv_subInfo = view.findViewById(R.id.tv_subInfo);
+        tv_price = view.findViewById(R.id.tv_price);
+        tv_paymentType = view.findViewById(R.id.tv_paymentType);
+        tv_cost = view.findViewById(R.id.tv_cost);
+        priceInfo = view.findViewById(R.id.layout_priceInfo);
+        itemList = view.findViewById(R.id.layout_itemList);
+        layout_contentView = view.findViewById(R.id.layout_contentView);
+        iv_checkBox = view.findViewById(R.id.iv_checkBox);
+        rootView = view.findViewById(R.id.rootView);
 
-        if (!flip) {
-            initNonFilpMode();
-        } else {
+        if (flip) {
+            initFilpMode();
             this.setOnClickListener(e -> openView());
         }
         initContents();
+        initPaymentType();
+        addView(view);
     }
 
     private void openView() {
@@ -178,15 +179,16 @@ public class RequestCardView extends LinearLayout {
         anim.start();
     }
 
-    private void initNonFilpMode() {
+    private void initFilpMode() {
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) priceInfo.getLayoutParams();
-        params.removeRule(RelativeLayout.ALIGN_PARENT_TOP);
-        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        params.removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        params.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         priceInfo.setLayoutParams(params);
-        iv_checkBox.setVisibility(VISIBLE);
+        iv_checkBox.setVisibility(INVISIBLE);
 
-        layout_contentView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.cardview_open_height);
-        layout_contentView.requestLayout();
+        ViewGroup.LayoutParams layoutParams = layout_contentView.getLayoutParams();
+        layoutParams.height = (int) getResources().getDimension(R.dimen.cardview_close_height);
+        layout_contentView.setLayoutParams(layoutParams);
     }
 
     private void initPaymentType() {

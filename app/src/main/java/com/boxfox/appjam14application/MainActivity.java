@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,18 +13,36 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
+import com.boxfox.appjam14application.data.RequestData;
+import com.boxfox.appjam14application.data.RequestItem;
+import com.boxfox.appjam14application.view.card.CardViewPagerAdapter;
+import com.boxfox.appjam14application.view.card.RequestCardView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 //모든 요청, 미리 결제된 요청, 현금 결제 요청, 대신 구매 요청
 public class MainActivity extends AppCompatActivity {
-    private LinearLayout layout_cardlist;
+    private LinearLayout layout_requestList, layout_requestList2;
+    private ViewPager viewpager_requestList;
 
-    Spinner main_spinner;
-    String[] category = {"모든 요청", "미리 결제된 요청", "현금 결제 요청", "대신 구매 요청"};
-    String selected_category = "";
+    private CardViewPagerAdapter adapter;
+
+    private Spinner main_spinner;
+    private String[] category = {"모든 요청", "미리 결제된 요청", "현금 결제 요청", "대신 구매 요청"};
+    private String selected_category = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        adapter = new CardViewPagerAdapter(this);
+        layout_requestList = findViewById(R.id.layout_requestList);
+        layout_requestList2 = findViewById(R.id.layout_requestList2);
+        viewpager_requestList = findViewById(R.id.viewpager_requestList);
+        viewpager_requestList.setAdapter(adapter);
+        viewpager_requestList.setClipToPadding(false);
+        viewpager_requestList.setPageMargin(-(int)getResources().getDimension(R.dimen.cardview_viewpager_margin));
         main_spinner = findViewById(R.id.main_spinner);
         ArrayAdapter<String> dayAdapter = new ArrayAdapter<>(
                 getApplicationContext(), R.layout.main_spinner_item, category
@@ -42,6 +61,43 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        loadRequestItems();
+    }
+
+    private void loadRequestItems() {
+        RequestData data = new RequestData();
+        data.setSubInfo("3학년 1반");
+        data.setName("가나달");
+        data.setPaymentType("먼저결제");
+        data.setCost(300);
+        data.setPrice(3000);
+        data.setProfileUrl("");
+        data.setItemList(createItemList());
+
+        adapter.addItem(data);
+        adapter.addItem(data);
+        adapter.addItem(data);
+        adapter.addItem(data);
+        layout_requestList.addView(new RequestCardView(this, true, data));
+        layout_requestList.addView(new RequestCardView(this, true, data));
+        layout_requestList.addView(new RequestCardView(this, true, data));
+        layout_requestList.addView(new RequestCardView(this, true, data));
+        layout_requestList2.addView(new RequestCardView(this, true, data));
+        layout_requestList2.addView(new RequestCardView(this, true, data));
+        layout_requestList2.addView(new RequestCardView(this, true, data));
+        layout_requestList2.addView(new RequestCardView(this, true, data));
+        layout_requestList2.addView(new RequestCardView(this, true, data));
+        layout_requestList2.addView(new RequestCardView(this, true, data));
+        layout_requestList2.addView(new RequestCardView(this, true, data));
+    }
+
+    private List<RequestItem> createItemList() {
+        List<RequestItem> list = new ArrayList();
+        list.add(new RequestItem("가가난", 1));
+        list.add(new RequestItem("가가22난", 10));
+        list.add(new RequestItem("가가난", 23));
+        list.add(new RequestItem("가ㅁㄴㅇㅁㄴㅇ", 31));
+        return list;
     }
 
 
