@@ -24,9 +24,6 @@ public class Login2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
 
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(login2_school_input, InputMethodManager.SHOW_IMPLICIT);
-
         login2_school_input = findViewById(R.id.login2_school_input);
         login2_login3_layout = findViewById(R.id.login2_login3_layout);
         login2_login3_layout.setOnClickListener(new View.OnClickListener() {

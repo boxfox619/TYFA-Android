@@ -8,9 +8,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -25,11 +27,21 @@ public class MainActivity extends AppCompatActivity {
     Spinner main_spinner;
     String[] category = {"모든 요청", "미리 결제된 요청", "현금 결제 요청", "대신 구매 요청"};
     String selected_category = "";
+    Button main_deliveryreq_button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        main_deliveryreq_button = findViewById(R.id.main_deliveryreq_button);
+        main_deliveryreq_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, StoreDetailActivity.class);
+                startActivity(intent);
+            }
+        });
         main_spinner = findViewById(R.id.main_spinner);
         ArrayAdapter<String> dayAdapter = new ArrayAdapter<>(
                 getApplicationContext(), R.layout.main_spinner_item, category
@@ -41,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 selected_category = (String) adapterView.getSelectedItem().toString();
+                Log.d("DEBUG", selected_category);
             }
 
             @Override
