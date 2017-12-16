@@ -50,7 +50,7 @@ public class PaymentActivity extends AppCompatActivity {
 
     public void requestPayment() {
         Ion.with(this)
-                .load("http://example.com/thing.json")
+                .load(getString(R.string.url_serverHost) + getString(R.string.url_requestPayment))
                 .setBodyParameter("user", "")
                 .setBodyParameter("number", getCardNumber())
                 .setBodyParameter("password", getCardPassword())
