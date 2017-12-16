@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        startActivity(new Intent(this, MyRequestActivity.class));
         setContentView(R.layout.activity_main);
         adapter = new CardViewPagerAdapter(this);
         layout_requestList = findViewById(R.id.layout_requestList);
@@ -77,15 +78,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadRequestItems() {
-        RequestData data = new RequestData();
-        data.setSubInfo("3학년 1반");
-        data.setName("가나달");
-        data.setPaymentType("먼저결제");
-        data.setCost(300);
-        data.setPrice(3000);
-        data.setProfileUrl("");
-        data.setItemList(createItemList());
 
+        RequestData data = RequestData.getDummyData();
         adapter.addItem(data);
         adapter.addItem(data);
         adapter.addItem(data);
@@ -101,15 +95,6 @@ public class MainActivity extends AppCompatActivity {
         layout_requestList2.addView(new RequestCardView(this, true, data));
         layout_requestList2.addView(new RequestCardView(this, true, data));
         layout_requestList2.addView(new RequestCardView(this, true, data));
-    }
-
-    private List<RequestItem> createItemList() {
-        List<RequestItem> list = new ArrayList();
-        list.add(new RequestItem("가가난", 1));
-        list.add(new RequestItem("가가22난", 10));
-        list.add(new RequestItem("가가난", 23));
-        list.add(new RequestItem("가ㅁㄴㅇㅁㄴㅇ", 31));
-        return list;
     }
 
 

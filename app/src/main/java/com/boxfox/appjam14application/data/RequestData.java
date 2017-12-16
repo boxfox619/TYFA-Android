@@ -1,5 +1,8 @@
 package com.boxfox.appjam14application.data;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -67,6 +70,25 @@ public class RequestData {
         this.paymentType = paymentType;
     }
 
+
+    public static RequestData getDummyData(){
+        RequestData data = new RequestData();
+        data.setSubInfo("3학년 1반");
+        data.setName("가나달");
+        data.setPaymentType("먼저결제");
+        data.setCost(300);
+        data.setPrice(3000);
+        data.setProfileUrl("");
+
+        List<RequestItem> list = new ArrayList();
+        list.add(new RequestItem("가가난", 1));
+        list.add(new RequestItem("가가22난", 10));
+        list.add(new RequestItem("가가난", 23));
+        list.add(new RequestItem("가ㅁㄴㅇㅁㄴㅇ", 31));
+
+        data.setItemList(list);
+        return data;
+    }
 
     //price - 주문 금액
     //cost - 심부름값

@@ -5,9 +5,14 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorBackground">#F0F0F0</color>
 
 
     <color name="priceType_first">#909090</color>
+    <color name="priceType_first_label">#c0c0c0</color>
     <color name="priceType_second">#ff7749</color>
+    <color name="priceType_second_label">#fcc8b7</color>
     <color name="priceType_third">#1ea5d0</color>
+    <color name="priceType_third_label">#acd7e5</color>
+    <color name="cost_label">#fbecb0</color>
 </resources>

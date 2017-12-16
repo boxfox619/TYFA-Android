@@ -26,7 +26,6 @@ import java.util.List;
  */
 
 public class RequestCardView extends LinearLayout {
-    private static final int DURATION = 1000;
     private RequestData requestData;
     private boolean flip;
 
@@ -35,7 +34,7 @@ public class RequestCardView extends LinearLayout {
     private TextView tv_name, tv_subInfo, tv_price, tv_paymentType, tv_cost;
     private ImageView iv_checkBox;
     private LinearLayout itemList;
-    private View priceInfo, layout_contentView, rootView;
+    private View priceInfo, layout_contentView, rootView, label_paymentType, btn_done;
     private boolean checked;
 
 
@@ -55,12 +54,14 @@ public class RequestCardView extends LinearLayout {
         tv_subInfo = view.findViewById(R.id.tv_subInfo);
         tv_price = view.findViewById(R.id.tv_price);
         tv_paymentType = view.findViewById(R.id.tv_paymentType);
+        label_paymentType = view.findViewById(R.id.label_paymentType);
         tv_cost = view.findViewById(R.id.tv_cost);
         priceInfo = view.findViewById(R.id.layout_priceInfo);
         itemList = view.findViewById(R.id.layout_itemList);
         layout_contentView = view.findViewById(R.id.layout_contentView);
         iv_checkBox = view.findViewById(R.id.iv_checkBox);
         rootView = view.findViewById(R.id.rootView);
+        btn_done = view.findViewById(R.id.btn_done);
 
         if (flip) {
             initFilpMode();
@@ -194,8 +195,18 @@ public class RequestCardView extends LinearLayout {
     private void initPaymentType() {
         tv_paymentType.setText(requestData.getPaymentType());
         switch (requestData.getPaymentType()) {
-
-
+            case "먼저 결제":
+                label_paymentType.setBackgroundColor(getResources().getColor(R.color.priceType_first_label));
+                tv_paymentType.setBackgroundColor(getResources().getColor(R.color.priceType_first));
+                break;
+            case "대신 구매":
+                label_paymentType.setBackgroundColor(getResources().getColor(R.color.priceType_second_label));
+                tv_paymentType.setBackgroundColor(getResources().getColor(R.color.priceType_second));
+                break;
+            case "현금 결제":
+                label_paymentType.setBackgroundColor(getResources().getColor(R.color.priceType_third_label));
+                tv_paymentType.setBackgroundColor(getResources().getColor(R.color.priceType_third));
+                break;
         }
     }
 
@@ -228,7 +239,7 @@ public class RequestCardView extends LinearLayout {
     private void initContents() {
         tv_name.setText(requestData.getName());
         tv_subInfo.setText(requestData.getSubInfo());
-        tv_price.setText(String.valueOf(requestData.getPrice()));
+        tv_price.setText(String.valueOf(requestData.getPrice() + "원"));
         tv_cost.setText(String.valueOf(requestData.getCost()));
         new AQuery(getContext()).id(R.id.iv_profileImage).image(requestData.getProfileUrl());
         initCheckbox();
@@ -251,6 +262,12 @@ public class RequestCardView extends LinearLayout {
 
     public void setCheckedChangeListener(CheckedChangeListener listener) {
         this.checkedChangeListener = listener;
+    }
+
+    public void setMyRequestMode() {
+        iv_checkBox.setVisibility(INVISIBLE);
+        btn_done.setVisibility(VISIBLE);
+        rootView.setPadding(rootView.getPaddingLeft(), rootView.getPaddingTop(), rootView.getPaddingRight(), (int) getResources().getDimension(R.dimen.cardview_myRequestMode_padding_bottom));
     }
 
     public interface CheckedChangeListener {
