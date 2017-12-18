@@ -58,7 +58,7 @@ public class StoreCardItemView extends LinearLayout {
 
     public void setSecondOnClick(OnItemSelected click) {
         (findViewById(R.id.view_second)).setOnClickListener(view ->{
-            click.selected(((TextView)findViewById(R.id.tv_title1)).getText().toString(), Integer.valueOf(((TextView)findViewById(R.id.tv_price2)).getText().toString().substring(0, ((TextView)findViewById(R.id.tv_price2)).getText().toString().length()-1)));
+            click.selected(((TextView)findViewById(R.id.tv_title2)).getText().toString(), Integer.valueOf(((TextView)findViewById(R.id.tv_price2)).getText().toString().substring(0, ((TextView)findViewById(R.id.tv_price2)).getText().toString().length()-1)));
         });
     }
 

@@ -22,9 +22,12 @@ public class PurchasePleaseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PurchasePleaseActivity.this, ConfirmActivity.class);
+                intent.putExtra("price", getIntent().getIntExtra("price", 3000));
+                intent.putExtra("tip", getIntent().getIntExtra("tip", 300));
+                intent.putExtra("data", getIntent().getStringExtra("data"));
+                intent.putExtra("priceType", getIntent().getStringExtra("priceType"));
                 startActivity(intent);
                 finish();
-
             }
         });
 

@@ -59,4 +59,7 @@ public class CardViewPagerAdapter extends PagerAdapter {
         return view == object;
     }
 
+    public List<RequestData> getItems() {
+        return dataList;
+    }
 }

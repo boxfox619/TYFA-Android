@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.boxfox.appjam14application.data.RequestData;
+import com.boxfox.appjam14application.data.SavedReqeustData;
 import com.boxfox.appjam14application.data.UserData;
 import com.boxfox.appjam14application.view.card.CardViewPagerAdapter;
 import com.boxfox.appjam14application.view.card.RequestCardView;
@@ -30,6 +31,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.realm.Realm;
 
 //모든 요청, 미리 결제된 요청, 현금 결제 요청, 대신 구매 요청
 public class MainActivity extends AppCompatActivity {
@@ -48,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivity(new Intent(this, CalculateActivity.class));
         setContentView(R.layout.activity_main);
         adapter = new CardViewPagerAdapter(this);
         list = new ArrayList<>();
@@ -68,19 +70,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (list.size() > 0) {
                     for (String calltoken : list) {
-                        Ion.with(MainActivity.this)
-                                .load(getString(R.string.url_serverHost) + getString(R.string.url_shuttle))
-                                .setBodyParameter("callToken", calltoken)
-                                .setBodyParameter("token", UserData.getDefault().getAccessToken())
-                                .asString().setCallback(new FutureCallback<String>() {
-                            @Override
-                            public void onCompleted(Exception e, String result) {
-
+                        Realm realm =  Realm.getDefaultInstance();
+                        realm.beginTransaction();
+                        for(RequestData datas : adapter.getItems()){
+                            if(datas.getItemToken().equals(calltoken)){
+                                SavedReqeustData data22 =  realm.createObject(SavedReqeustData.class);
+                                data22.setName(datas.getName());
+                                data22.setSubInfo(datas.getSubInfo());
+                                data22.setPrice(datas.getPrice());
+                                data22.setTip(datas.getCost());
+                                data22.setProfileUrl(datas.getProfileUrl());
                             }
-                        });
-                        Toast.makeText(MainActivity.this, "수락하였습니다!", Toast.LENGTH_LONG).show();
-                        loadRequestItems();
+                        }
+                        realm.commitTransaction();
                     }
+                    Toast.makeText(MainActivity.this, "수락하였습니다!", Toast.LENGTH_LONG).show();
+                    loadRequestItems();
                 } else {
                     Intent intent = new Intent(MainActivity.this, StoreDetailActivity.class);
                     startActivity(intent);
@@ -110,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadRequestItems() {
+        adapter.removeAllItem();
+        layout_requestList.removeAllViews();
         Ion.with(this)
                 .load(getString(R.string.url_serverHost) + getString(R.string.url_jobList) + UserData.getDefaultUser().getAccessToken())
                 .asString()
@@ -122,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
                             for (int i = 0; i < arr.length(); i++) {
                                 JSONObject object = (JSONObject) arr.get(i);
                                 RequestData data = RequestData.fromJson(object);
-                                adapter.removeAllItem();
                                 adapter.addItem(data);
                                 RequestCardView cardView = new RequestCardView(MainActivity.this, true, data);
                                 layout_requestList.addView(cardView);

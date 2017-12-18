@@ -26,7 +26,7 @@ public class RequestData {
     }
 
     public String getSubInfo() {
-        return subInfo;
+        return "3학년 " + clazz + "반";
     }
 
     public void setSubInfo(String subInfo) {
@@ -74,7 +74,7 @@ public class RequestData {
     }
 
 
-    public static RequestData getDummyData(){
+    public static RequestData getDummyData() {
         RequestData data = new RequestData();
         data.setSubInfo("3학년 1반");
         data.setName("가나달");
@@ -97,7 +97,11 @@ public class RequestData {
         RequestData requestData = new RequestData();
         requestData.setSchool(object.getString("school"));
         requestData.clazz = Integer.valueOf(object.getString("class"));
-        requestData.setProfileUrl(object.getString("profile_url"));
+        if (object.has("profile_url"))
+            requestData.setProfileUrl(object.getString("profile_url"));
+        else
+            requestData.setProfileUrl("https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/13892285_597933247053303_7922493801672574281_n.jpg?oh=131b2bd458b0751339462142241b65c4&oe=5A8B0E75");
+        requestData.name = object.getString("name");
         requestData.price = Integer.valueOf(object.getString("price"));
         requestData.cost = Integer.valueOf(object.getString("tip"));
         requestData.setPaymentType(object.getString("type"));

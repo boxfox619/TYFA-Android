@@ -36,7 +36,7 @@
                 android:id="@+id/tv_subInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/tv_name"
+                android:layout_alignStart="@+id/tv_name"
                 android:layout_below="@+id/tv_name"
                 android:text="3학년 2반"
                 android:textSize="12sp" />

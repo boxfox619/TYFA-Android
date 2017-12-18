@@ -55,6 +55,8 @@ public class StoreDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StoreDetailActivity.this, CalculateActivity.class);
+                intent.putExtra("data",object.toString());
+                intent.putExtra("price", tv_totalPrice.getText());
                 startActivity(intent);
             }
         });
@@ -109,7 +111,7 @@ public class StoreDetailActivity extends AppCompatActivity {
         priceMap.put(name, price);
         int count = 0;
         try {
-            if (object.get(name) != null) {
+            if (object.has(name)) {
                 count = object.getInt(name);
             }
             object.put(name, ++count);
@@ -124,7 +126,7 @@ public class StoreDetailActivity extends AppCompatActivity {
         priceMap.put(name, price);
         int count = 0;
         try {
-            if (object.get(name) != null) {
+            if (object.has(name)) {
                 count = object.getInt(name);
             }
             if (count > 0) {

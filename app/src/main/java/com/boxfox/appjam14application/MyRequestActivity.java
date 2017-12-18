@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 
 import com.boxfox.appjam14application.data.RequestData;
 import com.boxfox.appjam14application.data.RequestItem;
+import com.boxfox.appjam14application.data.SavedReqeustData;
 import com.boxfox.appjam14application.data.UserData;
 import com.boxfox.appjam14application.view.card.RequestCardView;
 import com.google.gson.JsonObject;
@@ -17,8 +18,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class MyRequestActivity extends AppCompatActivity {
     private LinearLayout layout_cardList;
@@ -34,27 +39,20 @@ public class MyRequestActivity extends AppCompatActivity {
     }
 
     public void loadMyRequest() {
-        Ion.with(this)
-                .load(getString(R.string.url_serverHost) + getString(R.string.url_myJob)+ UserData.getDefaultUser().getAccessToken())
-                .asString()
-                .setCallback(new FutureCallback<String>() {
-                    @Override
-                    public void onCompleted(Exception e, String result) {
-                        if (result == null) return;
-                        try {
-                            JSONArray arr = new JSONArray(result);
-                            for (int i = 0; i < arr.length(); i++) {
-                                JSONObject object = (JSONObject) arr.get(i);
-                                RequestData data = RequestData.fromJson(object);
-                                RequestCardView view = new RequestCardView(MyRequestActivity.this, false, data);
-                                view.setMyRequestMode();
-                                layout_cardList.addView(view);
-                            }
-                        } catch (JSONException e1) {
-                            e1.printStackTrace();
-                        }
-                    }
-                });
+        Realm realm =  Realm.getDefaultInstance();
+        RealmResults<SavedReqeustData> rs = realm.where(SavedReqeustData.class).findAll();
+        for(SavedReqeustData data : rs){
+            RequestData coverData = new RequestData();
+            coverData.setProfileUrl(data.getProfileUrl());
+            coverData.setSubInfo(data.getSubInfo());
+            coverData.setPaymentType("즉시 결제");
+            coverData.setPrice(data.getPrice());
+            coverData.setCost(data.getTip());
+            coverData.setName(data.getName());
+            RequestCardView view = new RequestCardView(MyRequestActivity.this, false, coverData);
+            view.setMyRequestMode();
+            layout_cardList.addView(view);
+        }
     }
 
 }

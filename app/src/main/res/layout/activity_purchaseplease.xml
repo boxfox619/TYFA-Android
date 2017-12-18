@@ -36,8 +36,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
+        android:layout_marginRight="20dp"
         android:lineSpacingExtra="13sp"
-        android:text="‘대신 구매’는 구매 학생이 돈이 부족할때,
+        android:text="‘대신 구매' 는 구매 학생이 돈이 부족할때,
 배달 학생이 먼저 결제 후 나중에 대금을
 지급하는 방식입니다!
 
@@ -55,13 +56,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="66dp"
+            android:layout_toStartOf="@+id/purchaseplease_layout1"
             android:gravity="end"
             android:text="우측 버튼을 누를 시 유의사항을
 숙지했다고 간주합니다"
             android:textColor="#4c1e1801"
+            android:layout_marginRight="10dp"
             android:textSize="12sp" />
 
         <RelativeLayout

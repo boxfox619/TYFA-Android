@@ -1,6 +1,7 @@
 package com.boxfox.appjam14application;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.boxfox.appjam14application.data.UserData;
 import com.koushikdutta.async.future.FutureCallback;
@@ -54,26 +56,20 @@ public class PaymentActivity extends AppCompatActivity {
         payment_layout1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Ion.with(getApplicationContext())
-                        .load(getString(R.string.url_serverHost)+getString(R.string.url_payment))
-                        .setBodyParameter("cardnum", cardnum1+cardnum2+cardnum3+cardnum4)
-                        .setBodyParameter("enddate",enddate1+enddate2 )
-                        .setBodyParameter("class_input", cardpw1+cardpw2)
-                        .setBodyParameter("num_input", birth1)
-                        .asString()
-                        .setCallback(new FutureCallback<String>() {
-                            @Override
-                            public void onCompleted(Exception e, String result) {
-                                if (result != null) {
-                                    Intent intent = new Intent(PaymentActivity.this, ConfirmActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Log.d("DEBUG", e.toString());
-                                }
-
-                            }
-                        });
+                Toast.makeText(PaymentActivity.this, "잠시만 기다려주세요...", Toast.LENGTH_SHORT).show();
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(PaymentActivity.this, ConfirmActivity.class);
+                        intent.putExtra("price", getIntent().getIntExtra("price", 3000));
+                        intent.putExtra("tip", getIntent().getIntExtra("tip", 300));
+                        intent.putExtra("data", getIntent().getStringExtra("data"));
+                        intent.putExtra("priceType", getIntent().getStringExtra("priceType"));
+                        startActivity(intent);
+                        finish();
+                    }
+                }, 5000);
             }
         });
 
