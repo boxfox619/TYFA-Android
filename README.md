@@ -2,6 +2,13 @@
 2017 14회 앱잼 생활부문 주제 : 학교 </br>
 매점의 물건을 대신 구매하여 배달해주고 수수료를 받는 서비스
 
+# Tech Stacks
+- glide
+- Facebook Auth
+- [aquery](https://code.google.com/archive/p/android-query/wikis/AsyncAPI.wiki)
+- [ion](https://github.com/koush/ion)
+- [iamport](https://www.iamport.kr/)
+
 # Presentation
 ![](http://cfile21.uf.tistory.com/image/99C9A63A5A49F26F29DB92)
 ![](http://cfile4.uf.tistory.com/image/99271C435A49F26F385C1D)
